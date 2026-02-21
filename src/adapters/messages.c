@@ -30,3 +30,25 @@ void printHello() {
     getch();
     nodelay(stdscr, TRUE);
 }
+
+void printError(char* error) {
+    clear();
+
+    if (has_colors()) {
+        start_color();
+        use_default_colors(); 
+        init_pair(1, COLOR_GREEN, -1); 
+    }
+
+    int y, x;
+    getmaxyx(stdscr, y, x);
+
+
+    mvprintw(y / 2 + 1, (x - strlen(error)) / 2, "%s", error);
+
+    refresh();
+
+    nodelay(stdscr, FALSE);
+    getch();
+    nodelay(stdscr, TRUE);
+}
